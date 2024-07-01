@@ -16,53 +16,8 @@
 #     lista_actores.append(actores_pelicula)
 #     lista.append(codigo_pelicula,nombre_pelicula,anio_pelicula,categoria_pelicula,actores_pelicula,director_pelicula)
     
-#------------------------------------------------------------------------------------------------------------
     
-import random 
-
-# 1. agregar pelicula
-
-lista_peliculas = []
-
-def menu():
     
-    print("1. Agregar pelicula.")
-    print("2. Listar peliculas.")
-    print("3. Buscar pelicula.")
-    print("4. Salir.")
-
-
-def agregar_pelicula():
-    # declaro variable lista
-    lista_actores = []
-    
-    # pido los datos de la pelicula
-    nombre = input("Ingresa el nombre: ")
-    anio = input("Ingresa el año: ")
-    categoria = input("Ingresa la categoria: ")
-
-    cantidad_actores = int(input("Ingresa la cantidad de actores: "))
-    for i in range(cantidad_actores):
-        actor = input(f"Ingresa el actor {i+1}: ")
-        lista_actores.append(actor)
-
-    director = input("Ingresa el director: ")
-
-    pelicula = {
-        "codigo": random.randint(1,1000),
-        "nombre": nombre,
-        "año": anio,
-        "categoria": categoria,
-        "actores": lista_actores,
-        "director": director
-    }
-    # print(pelicula)
-    return pelicula
-
-lista_peliculas = []
-lista_peliculas.append(agregar_pelicula())
-pelicula = agregar_pelicula()
-lista_peliculas.append(pelicula)
 
 
 # lista_peliculas = [
@@ -91,8 +46,49 @@ lista_peliculas.append(pelicula)
 #         "director": "director"
 #     }
 # ]
+#------------------------------------------------------------------------------------------------------------
+    
+import random 
 
-def listar_peliculas():
+
+# 1. agregar pelicula
+def menu():
+    
+    print("1. Agregar pelicula.")
+    print("2. Listar peliculas.")
+    print("3. Buscar pelicula.")
+    print("4. Salir.")
+
+
+def agregar_pelicula():
+    # declaro variable lista
+    lista_actores = []
+    
+    # pido los datos de la pelicula
+    nombre = input("Ingresa el nombre: ")
+    anio = int(input("Ingresa el año: "))
+    categoria = input("Ingresa la categoria: ")
+
+    cantidad_actores = int(input("Ingresa la cantidad de actores: "))
+    for i in range(cantidad_actores):
+        actor = input(f"Ingresa el actor {i+1}: ")
+        lista_actores.append(actor)
+
+    director = input("Ingresa el director: ")
+
+    pelicula = {
+        "codigo": random.randint(1,1000),
+        "nombre": nombre,
+        "año": anio,
+        "categoria": categoria,
+        "actores": lista_actores,
+        "director": director
+    }
+    # print(pelicula)
+    return pelicula
+
+
+def listar_peliculas(lista_peliculas):
 
     for index, pelicula in enumerate(lista_peliculas):
         print(f"Pelicula {index+1}: ",pelicula["nombre"])
@@ -100,7 +96,7 @@ def listar_peliculas():
 # listar_peliculas()
 
 #funcion que busca una pelicula en base a su categoria
-def buscar_peliculas():
+def buscar_peliculas(lista_peliculas):
 
     buscar_categoria = input("Ingresa una categoria a buscar: ") 
 
@@ -113,6 +109,8 @@ def buscar_peliculas():
 # buscar_peliculas()
 
 # genera archivo de texto con las peliculas 
-with open("peliculas.txt","w") as archivo:
-    for pelicula in lista_peliculas:
-        archivo.write(f"{pelicula}\n")
+def generar_archivo(lista_peliculas):
+    
+    with open("peliculas.txt","w") as archivo:
+        for pelicula in lista_peliculas:
+            archivo.write(f"{pelicula}\n")

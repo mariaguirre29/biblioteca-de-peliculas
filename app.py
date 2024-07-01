@@ -1,28 +1,43 @@
-from utilidades import menu, agregar_pelicula, listar_peliculas, buscar_peliculas 
+from utilidades import menu, agregar_pelicula, listar_peliculas, buscar_peliculas, generar_archivo
+
+
+# lista_peliculas.append(agregar_pelicula())
+# pelicula = agregar_pelicula()
+# lista_peliculas.append(pelicula)
+
 
 print("BIENVENIDOS! a continuacion te mostrare el menu:\n")
 menu()
 
+lista_peliculas = []
+
 while True:
     
     try:
-        opcion = int(input("ingrese una opcion que necesite: "))
     
+        opcion = int(input("ingrese una opcion que necesite: "))
+        
         if opcion == 1:
             agregar_pelicula()
+            pelicula_nueva = agregar_pelicula
+            lista_peliculas.append(pelicula_nueva)
+        
 
-        if opcion == 2:
-            listar_peliculas()
+        elif opcion == 2:
+            listar_peliculas(lista_peliculas)
         
-        if opcion == 3:
-            buscar_peliculas()
+        elif opcion == 3:
+            buscar_peliculas(lista_peliculas)
         
-        if opcion == 4:
+        elif opcion == 4:
+            generar_archivo(lista_peliculas)
             print("usted ha salido del menu!")
-            break
             
+            break
+        
         else:
             print("Opcion invalida! intente nuevamente")
+            
             
             
     except ValueError:
